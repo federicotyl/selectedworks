@@ -157,37 +157,32 @@ function createDetailImage(src, startX, startY, endX, endY, delay) {
 function showProjectGallery(project, anchorImg) {
   removeDetailImages();
 
-  const rect = anchorImg.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const screenW = window.innerWidth;
-  const screenH = window.innerHeight;
+  const startX = 80 + 520;
+  const startY = window.innerHeight / 2 - 340;
 
-  const size = 260;
-  const gap = -14;
-  const direction = centerX < screenW / 2 ? "right" : "left";
+  const frameW = 220;
+  const frameH = 300;
+  const gap = 24;
 
-  const images = project.gallery;
+  const galleryStartX = 660;
+  const galleryY = window.innerHeight / 2 - frameH / 2;
 
-  let targets = [];
-
-  if (direction === "right") {
-    targets = images.map((src, i) => ({
+  project.gallery.forEach((src, i) => {
+    createDetailImage(
       src,
-      x: rect.left + rect.width - 20 + i * (size + gap),
-      y: rect.top + (i % 2 === 0 ? -3 : 4)
-    }));
-  } else {
-    targets = images.map((src, i) => ({
-      src,
-      x: rect.left - size + 20 - i * (size + gap),
-      y: rect.top + (i % 2 === 0 ? -3 : 4)
-    }));
-  }
+      startX,
+      startY,
+      galleryStartX + i * (frameW + gap),
+      galleryY,
+      40 + i * 60
+    );
+  });
+}
 
   targets = targets.map((item) => ({
     ...item,
     x: Math.max(24, Math.min(item.x, screenW - size - 24)),
-    y: Math.max(24, Math.min(item.y, screenH - 340 - 24))
+    y: Math.max(24, Math.min(item.y, screenH - frameHeight - 24))
   }));
 
   const startX = rect.left + rect.width * 0.12;

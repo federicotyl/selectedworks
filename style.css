@@ -86,25 +86,22 @@ body {
 /* Info line */
 #info-line {
   position: fixed;
-  top: 50%;
-  left: 0;
-  width: 100vw;
-  transform: translateY(-50%);
+  left: 80px;
+  bottom: 36px;
+  width: calc(100vw - 160px);
   z-index: 120;
 
   display: grid;
-  grid-template-columns: 140px 90px 1fr 1fr 2fr;
+  grid-template-columns: 120px 220px 260px 1fr;
   align-items: center;
-  column-gap: 28px;
-
-  padding-left: 28px;
-  padding-right: 28px;
+  column-gap: 32px;
 
   font-size: 13px;
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: lowercase;
   pointer-events: none;
+
 
 }
 
@@ -200,7 +197,7 @@ body {
 
 /* Project detail gallery */
 .detail-frame {
-  position: absolute;
+  position: fixed;
   width: 220px;
   height: 300px;
   overflow: hidden;
@@ -311,4 +308,15 @@ body {
     letter-spacing: 0.14em;
     line-height: 1.4;
   }
+}.floating-image.active-project {
+  position: fixed !important;
+  left: 80px !important;
+  top: 50% !important;
+  width: 520px !important;
+  height: 680px !important;
+  object-fit: cover;
+  transform: translateY(-50%) scale(1) !important;
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  z-index: 85;
 }
