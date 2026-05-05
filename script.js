@@ -21,28 +21,19 @@ const ghostFields = [
 
 const projects = [
   {
-    cover: "images/img1.jpg",
-    gallery: ["images/img1.jpg", "images/img2.jpg", "images/img3.jpg"],
+    cover: "images/ad_aw24_vinyl/cover.jpg",
+    gallery: [
+      "images/ad_aw24_vinyl/cover.mp4",
+      "images/ad_aw24_vinyl/gallery_1.jpg",
+      "images/ad_aw24_vinyl/gallery_2.jpg",
+      "images/ad_aw24_vinyl/gallery_3.jpg",
+      "images/ad_aw24_vinyl/gallery_4.jpg",
+      "images/ad_aw24_vinyl/gallery_5.jpg"
+    ],
     year: "2025",
-    title: "VERITÉ",
-    type: "editorial design",
+    title: "AD AW24 VINYL",
+    type: "graphic / campaign",
     description: "short project note"
-  },
-  {
-    cover: "images/img2.jpg",
-    gallery: ["images/img2.jpg", "images/img1.jpg", "images/img3.jpg"],
-    year: "2024",
-    title: "FIELD",
-    type: "photography",
-    description: "visual archive study"
-  },
-  {
-    cover: "images/img3.jpg",
-    gallery: ["images/img3.jpg", "images/img1.jpg", "images/img2.jpg"],
-    year: "2025",
-    title: "FRAME",
-    type: "poster design",
-    description: "experimental image system"
   }
 ];
 
