@@ -16,18 +16,17 @@ const ghostFields = [lineYearGhost, lineTitleGhost, lineTypeGhost, lineDescripti
 
 const projects = [
   {
-    cover: "images/ad_aw24_vinyl/cover.mp4",
-    coverType: "video",
+    cover: "images/prada_manuals/cover.png",
+    coverType: "image",
     gallery: [
-      "images/ad_aw24_vinyl/gallery_1.jpg",
-      "images/ad_aw24_vinyl/gallery_2.jpg",
-      "images/ad_aw24_vinyl/gallery_3.jpg",
-      "images/ad_aw24_vinyl/gallery_4.jpg",
-      "images/ad_aw24_vinyl/gallery_5.jpg"
+      "images/prada_manuals/gallery_1.png",
+      "images/prada_manuals/gallery_2.png",
+      "images/prada_manuals/gallery_3.png",
+      "images/prada_manuals/gallery_4.png"
     ],
-    year: "2025",
-    title: "AD AW24 VINYL",
-    type: "visual / campaign",
+    year: "2022",
+    title: "PRADA",
+    type: "poster / graphic design",
     description: "short project note"
   }
 ];
