@@ -3,16 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Selected Works</title>
-
+  <title>TYL — Selected Works</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="canvas"></div>
+  <!-- DESKTOP CANVAS -->
+  <div id="canvas"></div>
 
-<script src="script.js"></script>
+  <!-- EXIT LAYER -->
+  <div id="exit-layer"></div>
 
+  <!-- EDITORIAL INFO LINE -->
+  <div id="info-line">
+    <div id="line-logo">T&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L</div>
+
+    <div class="line-slot">
+      <div id="line-year-ghost" class="line-field ghost"></div>
+      <div id="line-year" class="line-field main"></div>
+    </div>
+
+    <div class="line-slot">
+      <div id="line-title-ghost" class="line-field ghost"></div>
+      <div id="line-title" class="line-field main"></div>
+    </div>
+
+    <div class="line-slot">
+      <div id="line-type-ghost" class="line-field ghost"></div>
+      <div id="line-type" class="line-field main"></div>
+    </div>
+
+    <div class="line-slot">
+      <div id="line-description-ghost" class="line-field ghost"></div>
+      <div id="line-description" class="line-field main"></div>
+    </div>
+  </div>
+
+  <!-- MOBILE VIEW -->
+<div id="mobile-view">
+
+  <div id="mobile-rail">
+
+    <div class="mobile-item">
+      <img src="images/img1.jpg">
+      <div class="mobile-open">
+        <img src="images/img1.jpg">
+        <img src="images/img2.jpg">
+        <img src="images/img3.jpg">
+
+        <div class="mobile-text">
+          <div>2025 — VERITÉ</div>
+          <div>editorial design</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-item">
+      <img src="images/img2.jpg">
+      <div class="mobile-open">
+        <img src="images/img2.jpg">
+        <img src="images/img1.jpg">
+        <img src="images/img3.jpg">
+
+        <div class="mobile-text">
+          <div>2024 — FIELD</div>
+          <div>photography</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-item">
+      <img src="images/img3.jpg">
+      <div class="mobile-open">
+        <img src="images/img3.jpg">
+        <img src="images/img1.jpg">
+        <img src="images/img2.jpg">
+
+        <div class="mobile-text">
+          <div>2025 — FRAME</div>
+          <div>poster design</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+  <script src="script.js"></script>
 </body>
 </html>
