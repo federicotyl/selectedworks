@@ -12,18 +12,13 @@ const lineTypeGhost = document.getElementById("line-type-ghost");
 const lineDescriptionGhost = document.getElementById("line-description-ghost");
 
 const mainFields = [lineYear, lineTitle, lineType, lineDescription];
-const ghostFields = [
-  lineYearGhost,
-  lineTitleGhost,
-  lineTypeGhost,
-  lineDescriptionGhost
-];
+const ghostFields = [lineYearGhost, lineTitleGhost, lineTypeGhost, lineDescriptionGhost];
 
 const projects = [
   {
-    cover: "images/ad_aw24_vinyl/cover.jpg",
+    cover: "images/ad_aw24_vinyl/cover.mp4",
+    coverType: "video",
     gallery: [
-      "images/ad_aw24_vinyl/cover.mp4",
       "images/ad_aw24_vinyl/gallery_1.jpg",
       "images/ad_aw24_vinyl/gallery_2.jpg",
       "images/ad_aw24_vinyl/gallery_3.jpg",
@@ -32,7 +27,7 @@ const projects = [
     ],
     year: "2025",
     title: "AD AW24 VINYL",
-    type: "graphic / campaign",
+    type: "visual / campaign",
     description: "short project note"
   }
 ];
@@ -44,24 +39,31 @@ const MAX_IMAGES = 20;
 let focusedImage = null;
 let isProjectOpen = false;
 
+function createMediaElement(src, type, className) {
+  const el = type === "video" ? document.createElement("video") : document.createElement("img");
+  el.src = src;
+  if (className) el.classList.add(className);
+
+  if (type === "video") {
+    el.autoplay = true;
+    el.muted = true;
+    el.loop = true;
+    el.playsInline = true;
+  }
+
+  return el;
+}
+
 function showProjectLine(project) {
-  const nextValues = [
-    project.year,
-    project.title,
-    project.type,
-    project.description
-  ];
+  const nextValues = [project.year, project.title, project.type, project.description];
 
   mainFields.forEach((field, index) => {
     const currentText = field.textContent;
-
     ghostFields[index].textContent = currentText;
     ghostFields[index].classList.remove("linger");
     void ghostFields[index].offsetWidth;
 
-    if (currentText) {
-      ghostFields[index].classList.add("linger");
-    }
+    if (currentText) ghostFields[index].classList.add("linger");
 
     field.classList.remove("visible");
   });
@@ -72,41 +74,30 @@ function showProjectLine(project) {
     lineType.textContent = nextValues[2];
     lineDescription.textContent = nextValues[3];
 
-    const revealOrder = [
+    [
       { field: lineYear, baseDelay: 30 },
       { field: lineTitle, baseDelay: 120 },
       { field: lineType, baseDelay: 70 },
       { field: lineDescription, baseDelay: 190 }
-    ];
-
-    revealOrder.forEach((item) => {
+    ].forEach((item) => {
       const randomOffset = Math.floor(Math.random() * 70) - 20;
-      const finalDelay = item.baseDelay + randomOffset;
-
-      setTimeout(() => {
-        item.field.classList.add("visible");
-      }, finalDelay);
+      setTimeout(() => item.field.classList.add("visible"), item.baseDelay + randomOffset);
     });
   }, 120);
 
   setTimeout(() => {
-    ghostFields.forEach((ghost) => {
-      ghost.classList.remove("linger");
-    });
+    ghostFields.forEach((ghost) => ghost.classList.remove("linger"));
   }, 520);
 }
 
 function hideProjectLine() {
   mainFields.forEach((field, index) => {
     const currentText = field.textContent;
-
     ghostFields[index].textContent = currentText;
     ghostFields[index].classList.remove("linger");
     void ghostFields[index].offsetWidth;
 
-    if (currentText) {
-      ghostFields[index].classList.add("linger");
-    }
+    if (currentText) ghostFields[index].classList.add("linger");
 
     field.classList.remove("visible");
     field.textContent = "";
@@ -131,14 +122,12 @@ function removeDetailImages() {
 function createDetailImage(src, startX, startY, endX, endY, delay) {
   const frame = document.createElement("div");
   frame.classList.add("detail-frame");
-
   frame.style.left = `${endX}px`;
   frame.style.top = `${endY}px`;
 
-  const img = document.createElement("img");
-  img.src = src;
-
+  const img = createMediaElement(src, "image");
   frame.appendChild(img);
+
   canvas.appendChild(frame);
   detailImages.push(frame);
 
@@ -153,19 +142,9 @@ function createDetailImage(src, startX, startY, endX, endY, delay) {
 
     frame.animate(
       [
-        {
-          transform: `translate(${dx}px, ${dy}px) scale(0.96)`,
-          opacity: 0
-        },
-        {
-          transform: `translate(${dx * 0.18}px, ${dy * 0.18}px) scale(1.02)`,
-          opacity: 1,
-          offset: 0.78
-        },
-        {
-          transform: "translate(0px, 0px) scale(1)",
-          opacity: 1
-        }
+        { transform: `translate(${dx}px, ${dy}px) scale(0.96)`, opacity: 0 },
+        { transform: `translate(${dx * 0.18}px, ${dy * 0.18}px) scale(1.02)`, opacity: 1, offset: 0.78 },
+        { transform: "translate(0px, 0px) scale(1)", opacity: 1 }
       ],
       {
         duration: 240,
@@ -188,7 +167,7 @@ function showProjectGallery(project, anchorImg) {
   const gap = -14;
   const direction = centerX < screenW / 2 ? "right" : "left";
 
-  const images = project.gallery.filter((i) => i !== project.cover);
+  const images = project.gallery;
 
   let targets = [];
 
@@ -216,14 +195,7 @@ function showProjectGallery(project, anchorImg) {
   const startY = rect.top + rect.height * 0.08;
 
   targets.forEach((item, i) => {
-    createDetailImage(
-      item.src,
-      startX + i * 6,
-      startY + i * 4,
-      item.x,
-      item.y,
-      20 + i * 55
-    );
+    createDetailImage(item.src, startX + i * 6, startY + i * 4, item.x, item.y, 20 + i * 55);
   });
 }
 
@@ -232,9 +204,7 @@ function setImagesClickable(state) {
     img.style.pointerEvents = state ? "auto" : "none";
   });
 
-  if (focusedImage) {
-    focusedImage.style.pointerEvents = "auto";
-  }
+  if (focusedImage) focusedImage.style.pointerEvents = "auto";
 }
 
 function clearFocus() {
@@ -275,19 +245,14 @@ function openProject(project, img) {
 
 function createImage(x, y) {
   const project = projects[Math.floor(Math.random() * projects.length)];
-  const img = document.createElement("img");
-
-  img.src = project.cover;
-  img.classList.add("floating-image");
+  const img = createMediaElement(project.cover, project.coverType, "floating-image");
 
   img.style.left = `${x - 210}px`;
   img.style.top = `${y - 210}px`;
 
   img.addEventListener("click", (e) => {
     e.stopPropagation();
-
     if (isProjectOpen) return;
-
     openProject(project, img);
   });
 
@@ -296,17 +261,11 @@ function createImage(x, y) {
 
   if (imagesOnScreen.length > MAX_IMAGES) {
     const old = imagesOnScreen.shift();
-
-    if (old === focusedImage) {
-      clearFocus();
-    }
-
+    if (old === focusedImage) clearFocus();
     old.remove();
   }
 
-  requestAnimationFrame(() => {
-    img.classList.add("visible");
-  });
+  requestAnimationFrame(() => img.classList.add("visible"));
 }
 
 document.addEventListener("mousemove", (e) => {
@@ -327,25 +286,22 @@ const mobileProjects = document.querySelectorAll(".mobile-project");
 
 mobileProjects.forEach((project) => {
   const cover = project.querySelector(".mobile-cover");
-
   if (!cover) return;
 
   cover.addEventListener("click", () => {
     project.classList.toggle("active");
   });
 });
+
 const mobileItems = document.querySelectorAll(".mobile-item");
 
 mobileItems.forEach((item) => {
   item.addEventListener("click", () => {
-    
     const isActive = item.classList.contains("active");
-
-    mobileItems.forEach(i => i.classList.remove("active"));
+    mobileItems.forEach((i) => i.classList.remove("active"));
 
     if (!isActive) {
       item.classList.add("active");
     }
-
   });
 });
