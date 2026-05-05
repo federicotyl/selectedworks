@@ -38,7 +38,7 @@ body {
 .floating-image {
   position: absolute;
   width: 420px;
-  height: auto;
+  height: 560px;
   object-fit: cover;
   display: block;
 
@@ -93,18 +93,19 @@ body {
   z-index: 120;
 
   display: grid;
-  grid-template-columns: 180px 120px 1.2fr 1fr 2fr;
+  grid-template-columns: 140px 90px 1fr 1fr 2fr;
   align-items: center;
-  column-gap: 36px;
+  column-gap: 28px;
 
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 28px;
+  padding-right: 28px;
 
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: lowercase;
   pointer-events: none;
+
 }
 
 #line-logo {
@@ -200,8 +201,8 @@ body {
 /* Project detail gallery */
 .detail-frame {
   position: absolute;
-  width: 240px;
-  height: 320px;
+  width: 220px;
+  height: 300px;
   overflow: hidden;
   z-index: 80;
   pointer-events: none;
