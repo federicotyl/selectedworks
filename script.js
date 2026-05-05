@@ -191,7 +191,7 @@ function showProjectGallery(project, anchorImg) {
   targets.forEach((item, i) => {
     createDetailImage(item.src, startX + i * 6, startY + i * 4, item.x, item.y, 20 + i * 55);
   });
-}
+
 
 function setImagesClickable(state) {
   imagesOnScreen.forEach((img) => {
